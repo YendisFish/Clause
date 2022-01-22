@@ -113,6 +113,9 @@ namespace Clause.Handlers
                     if(ifexists) 
                     {
                         dependencies.Add(dep);
+                    } else 
+                    {
+                        throw new Exception("This program doesn't seem to be on your computer: " + value.Replace("//", ""));
                     }
                 }
 
