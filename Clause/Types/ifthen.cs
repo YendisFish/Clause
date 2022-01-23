@@ -1,3 +1,5 @@
+using Clause.Handlers;
+using System.Diagnostics;
 namespace Clause.Types.LanguageTypes
 {
     public class IfThen
@@ -22,11 +24,14 @@ namespace Clause.Types.LanguageTypes
                         if(ParsedIf[4].StartsWith("COMMAND//"))
                         {
                             //Add Logic
+                            Executor exec = new(Dependency.ParseDependencyFromLine(ParsedIf[4]));
+                            Process proc = exec.ExecuteFile();
                         }
 
                         if(ParsedIf[4].StartsWith("OUTPUT//"))
                         {
-                            //Add Logic
+                            Output output = Output.ParseOutput(ParsedIf[4]);
+                            output.OutToConsole();
                         }
                     }
                 }
