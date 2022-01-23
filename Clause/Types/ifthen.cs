@@ -9,46 +9,49 @@ namespace Clause.Types.LanguageTypes
             this.Line = line;
         }
 
-        public void ExecuteIf(List<Object> obs)
+        public void ExecuteIf(List<Object<object>> obs)
         {
             List<string> ParsedIf = this.Line.Split(':').ToList<string>();
 
             if(ParsedIf[0] == "IF")
             {
-                if(ParseArgs(ParsedIf[1], obs))
+                if(ParsedIf[2] == "IS")
                 {
-                    
+                    if(ParseArgs(ParsedIf[1], ParsedIf[3], obs))
+                    {
+                        if(ParsedIf[4].StartsWith("COMMAND//"))
+                        {
+                            //Add Logic
+                        }
+
+                        if(ParsedIf[4].StartsWith("OUTPUT//"))
+                        {
+                            //Add Logic
+                        }
+                    }
                 }
             }
         }
 
-        public bool ParseArgs(string midArgs, List<Object> obs)
+        public bool ParseArgs(object midArgs, object comp, List<Object<object>> obs)
         {
             foreach(Object<object> va in obs)
             {
-                if(midArgs.Contains(va.varname))
+                if(midArgs.ToString().Contains(va.varname))
                 {
-                    if(midArgs.Contains('<'))
+                    if(va == comp)
                     {
-                        //Add Logic
-                    }
-
-                    if(midArgs.Contains('>'))
-                    {
-                        //Add Logic
-                    }
-
-                    if(midArgs.Contains('='))
-                    {
-                        //Add Logic
+                        return true;
                     }
                 }
             }
 
-            switch(midArgs)
+            if(midArgs == comp)
             {
-                
+                return true;
             }
+
+            return false;
         }
     }
 }
