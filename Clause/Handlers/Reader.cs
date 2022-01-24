@@ -100,7 +100,7 @@ namespace Clause.Handlers
 
             List<Dependency> dependencies = new();
             List<string> commands = new();
-            List<Object> varibales = new();
+            List<Object<object>> variables = new();
             List<Output> outputs = new();
             
             foreach(string value in script)
@@ -132,29 +132,35 @@ namespace Clause.Handlers
 
                 if(value.StartsWith("STRING//"))
                 {
-                    Object<string> str = new();
+                    Object<object> str = new();
                     //Implement Logic
-                    varibales.Add(str);
+                    variables.Add(str);
                 }
 
                 if(value.StartsWith("INT//"))
                 {
-                    Object<int> num = new();
+                    Object<object> num = new();
                     //Implement Logic
-                    varibales.Add(num);
+                    variables.Add(num);
                 }
                 
                 if(value.StartsWith("BOOL//"))
                 {
-                    Object<bool> bol = new();
+                    Object<object> bol = new();
                     //Implement Logic
-                    varibales.Add(bol);
+                    variables.Add(bol);
                 }
 
                 if(value.StartsWith("OUTPUT//"))
                 {
                     Output toOut = Output.ParseOutput(value);
                     toOut.OutToConsole();
+                }
+
+                if(value.StartsWith("IF:"))
+                {
+                    IfThen ifthen = new(value);
+                    ifthen.ExecuteIf(variables);
                 }
             }
 
