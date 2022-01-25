@@ -1,7 +1,7 @@
 using Clause.Types.LanguageTypes;
 using Clause.Types;
 using System.Diagnostics;
-
+using Clause.Types.Records;
 namespace Clause.Handlers 
 {
     public class Reader
@@ -133,20 +133,50 @@ namespace Clause.Handlers
                 if(value.StartsWith("STRING//"))
                 {
                     Object<object> str = new();
-                    //Implement Logic
+
+                    string[] values = value.Split("//");
+                    
+                    str.varname = values[1];
+                    str.val = values[2];
+
                     variables.Add(str);
                 }
 
                 if(value.StartsWith("INT//"))
                 {
                     Object<object> num = new();
-                    //Implement Logic
+
+                    string[] values = value.Split("//");
+
+                    num.varname = values[1];
+                    num.val = values[2];
+
                     variables.Add(num);
                 }
                 
                 if(value.StartsWith("BOOL//"))
                 {
                     Object<object> bol = new();
+                    
+                    string[] values = value.Split("//");
+                    
+                    bol.varname = values[1];
+
+                    if(values[0] == "TRUE")
+                    {
+                        bol.val = true;
+                    }
+
+                    if(values[0] == "FALSE")
+                    {
+                        bol.val = false;
+                    }
+
+                    if(values[0] != "TRUE" && values[0] != "FALSE")
+                    {
+                        new CException(new List<object> { "SYNTAX ERROR: Could not assign value to \"BOOL\"" }).Throw();
+                        throw new Exception("EXIT");
+                    }
                     //Implement Logic
                     variables.Add(bol);
                 }
