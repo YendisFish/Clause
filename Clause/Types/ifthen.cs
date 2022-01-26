@@ -11,7 +11,7 @@ namespace Clause.Types.LanguageTypes
             this.Line = line;
         }
 
-        public void ExecuteIf(List<Object<object>> obs)
+        public async Task ExecuteIf(List<Object<object>> obs)
         {
             List<string> ParsedIf = this.Line.Split(':').ToList<string>();
 
@@ -24,8 +24,8 @@ namespace Clause.Types.LanguageTypes
                         if(ParsedIf[4].StartsWith("COMMAND//"))
                         {
                             //Add Logic
-                            Executor exec = new(Dependency.ParseDependencyFromLine(ParsedIf[4]));
-                            Process proc = exec.ExecuteFile();
+                            Executor exec = new(Dependency.ParseDependencyFromLine(ParsedIf[4]), this.Line);
+                            Process proc = await exec.ExecuteFile();
                         }
 
                         if(ParsedIf[4].StartsWith("OUTPUT//"))

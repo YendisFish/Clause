@@ -93,7 +93,7 @@ namespace Clause.Handlers
             return File.ReadAllLines(this.Path);
         }
 
-        public static Reader ReadFromStart(string Path)
+        public static async Task<Reader> ReadFromStart(string Path)
         {
             Reader ret = new Reader(Path);
             string[] script = File.ReadAllLines(ret.Path);
@@ -108,15 +108,7 @@ namespace Clause.Handlers
                 if(value.StartsWith("//"))
                 {
                     Dependency? dep = Dependency.ParseDependencyFromLine(value);
-                    bool ifexists = new DependencyChecker(dep).CheckDependency();
-
-                    if(ifexists) 
-                    {
-                        dependencies.Add(dep);
-                    } else 
-                    {
-                        throw new Exception("This program doesn't seem to be on your computer: " + value.Replace("//", ""));
-                    }
+                    dependencies.Add(dep);
                 }
 
                 if(value.StartsWith("COMMAND//"))
@@ -125,7 +117,8 @@ namespace Clause.Handlers
                     {
                         if(value.ToLower().Contains(dep.FileName.ToLower()))
                         {
-                            Process? exec = new Executor(dep).ExecuteFile();
+                            Executor? exec = new Executor(dep, value);
+                            Process? proc = await exec.ExecuteFile();
                         }
                     }
                 }
@@ -184,7 +177,7 @@ namespace Clause.Handlers
                 if(value.StartsWith("OUTPUT//"))
                 {
                     Output toOut = Output.ParseOutput(value);
-                    toOut.OutToConsole();
+                    await toOut.OutToConsole();
                 }
 
                 if(value.StartsWith("IF:"))

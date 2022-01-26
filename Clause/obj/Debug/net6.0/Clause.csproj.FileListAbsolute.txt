@@ -1,0 +1,15 @@
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\bin\Debug\net6.0\Clause.exe
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\bin\Debug\net6.0\Clause.deps.json
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\bin\Debug\net6.0\Clause.runtimeconfig.json
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\bin\Debug\net6.0\Clause.dll
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\bin\Debug\net6.0\ref\Clause.dll
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\bin\Debug\net6.0\Clause.pdb
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\Clause.csproj.AssemblyReference.cache
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\Clause.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\Clause.AssemblyInfoInputs.cache
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\Clause.AssemblyInfo.cs
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\Clause.csproj.CoreCompileInputs.cache
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\Clause.dll
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\ref\Clause.dll
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\Clause.pdb
+C:\Users\snib\Documents\CSPROJ\Clause\Clause\obj\Debug\net6.0\Clause.genruntimeconfig.cache

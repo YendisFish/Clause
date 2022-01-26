@@ -21,9 +21,9 @@ namespace Clause.Types
             return new Output("EMPTY");
         }
 
-        public void OutToConsole() 
+        public async Task OutToConsole() 
         {
-            Console.WriteLine(this.OutputValue);
+            Console.WriteLine(this.OutputValue); 
         }
     }
 }

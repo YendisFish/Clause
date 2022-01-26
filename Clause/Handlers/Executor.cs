@@ -6,16 +6,19 @@ namespace Clause.Handlers
     public class Executor
     {
         public Dependency File { get; set; }
+        public string Line { get; set; }
 
-        public Executor(Dependency dep) 
+        public Executor(Dependency dep, string line) 
         {   
             this.File = dep;
+            this.Line = line;
         }
 
-        public Process? ExecuteFile()
+        public async Task<Process?> ExecuteFile()
         {
             ProcessStartInfo inf = new();
             inf.FileName = this.File.FileName;
+            Console.WriteLine(ParseLineToArgs());
             inf.Arguments = ParseLineToArgs();
 
             Process? proc = Process.Start(inf);
@@ -25,10 +28,10 @@ namespace Clause.Handlers
 
         public string ParseLineToArgs()
         {
-            string toparse = this.File.ScriptLine;
-            toparse.Replace("//" + this.File.FileName, "");
+            string toparse = this.Line;
+            string ret = toparse.Replace("COMMAND//" + this.File.FileName, "");
             
-            return toparse;
+            return ret;
         }
     }
 }
